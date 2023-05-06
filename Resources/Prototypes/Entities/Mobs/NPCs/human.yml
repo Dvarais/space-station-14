@@ -46,3 +46,19 @@
   description: A polymorphed unfortunate.
   components:
   - type: Cluwne
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Dead
+  save: false # mobs are currently not saveable.
+  id: Nukecorpse
+  name: unidentified human
+  description: We barely knew ye.
+  components:
+  - type: Damageable
+    damage:
+      types:
+        Blunt: 200
+  - type: Loadout
+    prototype: SyndicateOperativeGearFull
+    prototypes: [SyndicateOperativeGearFull]
