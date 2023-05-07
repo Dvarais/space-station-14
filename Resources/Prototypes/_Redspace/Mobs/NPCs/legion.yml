@@ -16,7 +16,7 @@
     - Flesh
   - type: Sprite
     drawdepth: Mobs
-    sprite: Textures/Lavalend/Mobs/legion.rsi
+    sprite: Textures/_Redspace/Lavalend/Mobs/legion.rsi
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5

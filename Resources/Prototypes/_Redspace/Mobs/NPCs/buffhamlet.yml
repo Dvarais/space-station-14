@@ -15,7 +15,7 @@
     speechSounds: Squeak
   - type: Sprite
     drawdepth: Mobs
-    sprite: Mobs/Animals/buffhamlet.rsi
+    sprite: _Redspace/Animals/buffhamlet.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: omegahamlet

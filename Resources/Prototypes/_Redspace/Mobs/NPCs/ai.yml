@@ -92,7 +92,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Mobs/Silicon/ai.rsi
+    sprite: _Redspace/Silicon/ai.rsi
     state: ai-redoctober
   - type: Construction
     graph: HonkBot
