@@ -1,0 +1,196 @@
+- type: entity
+  save: false
+  abstract: true
+  id: AI_Base
+  components:
+  - type: LagCompensation
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: Clickable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Bloodstream
+    bloodReagent: Oil
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          1
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.35
+      density: 50
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    netsync: false
+  - type: Faction
+    factions:
+    - SimpleNeutral
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+  - type: MovedByPressure
+  - type: DrawableSolution
+    solution: bloodstream
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Stutter
+    - Electrocution
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: Repairable
+    fuelcost: 15
+    doAfterDelay: 8
+  - type: Pullable
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - ShoesRequiredStepTriggerImmune
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Input
+    context: "human"
+
+- type: entity
+  parent: AI_Base
+  id: AI
+  name: AI
+  description: it smarter than you
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Redspace/Silicon/ai.rsi
+    state: ai-redoctober
+  - type: Construction
+    graph: HonkBot
+    node: bot
+  - type: GhostRole
+    makeSentient: true
+    name: R.E.D
+    description: An artificial being of pure COMMUNISM.
+  - type: GhostTakeoverAvailable
+  - type: Anchorable
+  - type: Access
+    groups:
+    - AllAccess
+  - type: UserInterface
+    interfaces:
+      - key: enum.SolarControlConsoleUiKey.Key
+        type: SolarControlConsoleBoundUserInterface
+      - key: enum.CommunicationsConsoleUiKey.Key
+        type: CommunicationsConsoleBoundUserInterface
+      - key: enum.RadarConsoleUiKey.Key
+        type: RadarConsoleBoundUserInterface
+      - key: enum.CargoConsoleUiKey.Orders
+        type: CargoOrderConsoleBoundUserInterface
+      - key: enum.CrewMonitoringUIKey.Key
+        type: CrewMonitoringBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      - key: enum.SolarControlConsoleUiKey.Key
+        toggleAction:
+          name: action-name-show-solar-console
+          description: action-description-show-solar-console
+          icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+          iconOn: Structures/Machines/parts.rsi/box_2.png
+          keywords: [ "AI", "console", "interface" ]
+          priority: -10
+          event: !type:ToggleIntrinsicUIEvent
+      - key: enum.CommunicationsConsoleUiKey.Key
+        toggleAction:
+          name: action-name-show-communications-console
+          description: action-description-show-communications-console
+          icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+          iconOn: Structures/Machines/parts.rsi/box_2.png
+          keywords: [ "AI", "console", "interface" ]
+          priority: -10
+          event: !type:ToggleIntrinsicUIEvent
+      - key: enum.RadarConsoleUiKey.Key
+        toggleAction:
+          name: action-name-show-radar-console
+          description: action-description-show-radar-console
+          icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+          iconOn: Structures/Machines/parts.rsi/box_2.png
+          keywords: [ "AI", "console", "interface" ]
+          priority: -10
+          event: !type:ToggleIntrinsicUIEvent
+      - key: enum.CargoConsoleUiKey.Orders
+        toggleAction:
+          name: action-name-show-cargo-console
+          description: action-description-show-cargo-console
+          icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+          iconOn: Structures/Machines/parts.rsi/box_2.png
+          keywords: [ "AI", "console", "interface" ]
+          priority: -10
+          event: !type:ToggleIntrinsicUIEvent
+      - key: enum.CrewMonitoringUIKey.Key
+        toggleAction:
+          name: action-name-show-crew-monitoring-console
+          description: action-description-crew-monitoring-console
+          icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+          iconOn: Structures/Machines/parts.rsi/box_2.png
+          keywords: [ "AI", "console", "interface" ]
+          priority: -10
+          event: !type:ToggleIntrinsicUIEvent
+  - type: SolarControlConsole # look ma i AM the computer!
+  - type: CommunicationsConsole
+    title: communicationsconsole-announcement-title-centcom
+    color: "#228b22"
+  - type: RadarConsole
+  - type: CargoOrderConsole
+  - type: CrewMonitoringConsole
+    snap: false
+    precision: 3
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Command
+    - CentCom
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    globalReceive: true
+  - type: Actions
+  - type: DoAfter
