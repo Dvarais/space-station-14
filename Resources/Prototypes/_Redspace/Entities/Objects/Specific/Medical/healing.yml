@@ -4,22 +4,22 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Objects/Fun/toys.rsi
+    sprite: _Redspace/Lavalend/Misc/legionsoul.rsi
   # Inherited
   - type: StaticPrice
     price: 0
 
 - type: entity
-  name: Legion-yadro
+  name: Legion Soul
   description: Alien organ, looks acceptable?
   parent: Baselegitem
-  id: LegionYadro
+  id: LegionSoul
   components:
   - type: Tag
     tags:
     - Bloodpack
   - type: Sprite
-    state: orb
+    state: legion_soul
   - type: Healing
     damageContainer: Biological
     damage:
