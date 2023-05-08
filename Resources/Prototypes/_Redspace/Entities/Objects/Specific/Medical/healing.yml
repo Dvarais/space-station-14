@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseItem
+  id: Baselegitem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+  # Inherited
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  name: Legion-yadro
+  description: Alien organ, looks acceptable?
+  parent: Baselegitem
+  id: LegionYadro
+  components:
+  - type: Tag
+    tags:
+    - Bloodpack
+  - type: Sprite
+    state: orb
+  - type: Healing
+    damageContainer: Biological
+    damage:
+      groups:
+        Burn: -50
+        Brute: -50
+        Toxin: -50
+        Airloss: -50
+        Genetic: -50
+    ModifyBloodLevel: 45 #restores about 5% blood per use on standard humanoids.
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: Bloodpack
+    count: 1
+  - type: StackPrice
+    price: 50
+  - type: TimedDespawn
+    lifetime: 300 #в тиках

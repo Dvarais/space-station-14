@@ -16,7 +16,7 @@
     - Flesh
   - type: Sprite
     drawdepth: Mobs
-    sprite: Textures/_Redspace/Lavalend/Mobs/legion.rsi
+    sprite: _Redspace/Lavalend/Mobs/legion.rsi
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
@@ -108,10 +108,15 @@
     - id: Nukecorpse
       amount: 1
       prob: 0.01
-    - id: SalvageHumanCorpse
+    - id: lowpriceShaft
       amount: 1
-      prob: 0.4
-    - id: 
+      prob: 0.6
+    - id: LegionYadro
+      amount: 1
+      prob: 1
+    - id: HighpriceShaft
+      amount: 1
+      prob: 0.2
 
 - type: entity
   parent: BaseMobLavaland

@@ -1,0 +1,70 @@
+- type: entity
+  parent: BaseMobHuman
+  suffix: Dead
+  save: false # mobs are currently not saveable.
+  id: Nukecorpse
+  name: unidentified human
+  description: We barely knew ye.
+  components:
+  - type: Damageable
+    damage:
+      types:
+        Blunt: 200
+  - type: Loadout
+    prototype: SyndicateOperativeGearFull
+    prototypes: [SyndicateOperativeGearFull]
+
+- type: startingGear
+  id: HighpriceSal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    back: ClothingBackpackSalvageFilled
+    shoes: ClothingShoesBootsMag
+    id: SalvagePDA
+    ears: ClothingHeadsetCargo
+    outerClothing: ClothingOuterHardsuitSalvage
+  satchel: ClothingBackpackSatchelSalvageFilled
+  duffelbag: ClothingBackpackDuffelSalvageFilled
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Dead
+  save: false 
+  id: HighpriceShaft
+  name: unidentified human
+  description: We barely knew ye.
+  components:
+  - type: Damageable
+    damage:
+      types:
+        Blunt: 200
+  - type: Loadout
+    prototype: HighpriceSal
+    prototypes: [HighpriceSal]
+
+- type: startingGear
+  id: lowpriceSal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    back: ClothingBackpackSalvageFilled
+    shoes: ClothingShoesBootsMag
+    id: SalvagePDA
+    ears: ClothingHeadsetCargo
+  satchel: ClothingBackpackSatchelSalvageFilled
+  duffelbag: ClothingBackpackDuffelSalvageFilled
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Dead
+  save: false 
+  id: lowpriceShaft
+  name: unidentified human
+  description: We barely knew ye.
+  components:
+  - type: Damageable
+    damage:
+      types:
+        Blunt: 200
+  - type: Loadout
+    prototype: lowpriceSal
+    prototypes: [lowpriceSal]
