@@ -9,13 +9,15 @@
     sprite: Objects/Materials/ore.rsi
   - type: Item
     sprite: Objects/Materials/ore.rsi
+    size: 30
   - type: ItemStatus
   - type: Tag
     tags:
     - Ore
   - type: Fixtures
     fixtures:
-      - shape:
+      fix1:
+        shape:
           !type:PhysShapeCircle
           radius: 0.2
         density: 20
@@ -168,6 +170,30 @@
 - type: entity
   parent: UraniumOre
   id: UraniumOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+
+- type: entity
+  parent: OreBase
+  id: BananiumOre
+  name: bananium ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: BananiumOre
+  - type: Sprite
+    state: bananium
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Bananium: 500
+
+- type: entity
+  parent: BananiumOre
+  id: BananiumOre1
   suffix: Single
   components:
   - type: Stack

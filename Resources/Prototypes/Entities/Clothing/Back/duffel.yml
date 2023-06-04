@@ -26,6 +26,9 @@
     interfaces:
     - key: enum.StorageUiKey.Key
       type: StorageBoundUserInterface
+  # to prevent bag open/honk spam
+  - type: UseDelay
+    delay: 0.5
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -227,3 +230,5 @@
       shader: unshaded
   - type: Storage
     capacity: 9999
+  - type: ClothingSpeedModifier
+    sprintModifier: 1 # makes its stats identical to other variants of bag of holding

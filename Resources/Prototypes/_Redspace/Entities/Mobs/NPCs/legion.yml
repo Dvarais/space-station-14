@@ -1,0 +1,160 @@
+- type: entity
+  parent: SimpleMobBase
+  id: BaseMobLavaland
+  name: aberrant flesh
+  description: A shambling mass of flesh, animated through anomalous energy.
+  abstract: true
+  components:
+  - type: HTN
+    rootTask: SimpleHostileCompound
+  - type: Faction
+    factions:
+    - SimpleHostile
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - Flesh
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Redspace/Lavalend/Mobs/legion.rsi
+  - type: MovementAlwaysTouching
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: Stamina
+    excess: 50
+  - type: Appearance
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: Bloodstream
+    bloodMaxVolume: 100
+  - type: CombatMode
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 0
+  - type: ReplacementAccent
+    accent: genericAggressive
+
+- type: entity
+  name: Legion
+  parent: BaseMobLavaland
+  id: Legion
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: legion
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: legion
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      230: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+  - type: Barotrauma #no space damage.
+    damage:
+      types:
+        Blunt: 0
+  - type: Bloodstream
+    maxBleedAmount: 0
+    bloodReagent: Milk
+    bloodlossDamage: #no bloodloss damage. overriding base components
+      types:
+        Bloodloss: 0
+    bloodlossHealDamage:
+      types:
+        Bloodloss: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/demon_dies.ogg # Звук
+      - !type:ExplodeBehavior
+  - type: TimedSpawner
+    prototypes:
+      - LavaCherep
+    chance: 1
+    intervalSeconds: 30
+    MinimumEntitiesSpawned: 3
+    MaximumEntitiesSpawned: 3
+  - type: Butcherable
+    spawned:
+    - id: Nukecorpse
+      amount: 1
+      prob: 0.01
+    - id: lowpriceShaft
+      amount: 1
+      prob: 0.6
+    - id: LegionSoul
+      amount: 1
+      prob: 1
+    - id: HighpriceShaft
+      amount: 1
+      prob: 0.2
+
+- type: entity
+  parent: BaseMobLavaland
+  id: LavaCherep
+  name: Legion skull
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: legion_head
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: legion_head
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 10
+  - type: TimedDespawn
+    lifetime: 30 #в тиках
+  - type: Bloodstream
+    maxBleedAmount: 0
+    bloodReagent: Milk
+    bloodlossDamage: #no bloodloss damage. overriding base components
+      types:
+        Bloodloss: 0
+    bloodlossHealDamage:
+      types:
+        Bloodloss: 0
